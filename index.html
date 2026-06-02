@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuma Aslan | Özgeçmiş</title>
+    <!-- Google Fontları ve İkonlar -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Temel Ayarlar ve Gelişmiş Animasyon Geçişleri */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f3ef 0%, #e1dad0 100%); /* Zengin ve mat fildişi geçişi */
+            color: #1e293b;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            padding: 60px 20px;
+        }
+
+        /* Mobil ve PC Uyumlu Esnek Konteyner */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ÜST ALAN: Ultra Modern ve Tipografik Başlık Kartı */
+        .brand-header {
+            background: #111827; /* Derin gece siyahı */
+            padding: 50px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            margin-bottom: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Parlama Efekti */
+        .brand-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* İsim: Kalın, Net ve Teknolojik */
+        .brand-header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        /* Unvan: Tamamen Farklı, Geçişli ve Dinamik Renkli */
+        .brand-header h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #d4af37 0%, #f59e0b 100%); /* Altından sıcak ambere dinamik geçiş */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        /* ANA İÇERİK KARTI */
+        .main-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 45px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            margin-bottom: 35px;
+        }
+
+        .section {
+            margin-bottom: 45px;
+        }
+
+        .section h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #111827;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 6px;
+            font-weight: 700;
+        }
+
+        /* Özgeçmiş Kart Yapıları */
+        .resume-item {
+            margin-bottom: 25px;
+            background: #ffffff;
+            padding: 22px;
+            border-radius: 12px;
+            border: 1px solid rgba(226, 232, 240, 0.7);
+        }
+
+        .resume-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Hover Geçişleri */
+        .resume-item:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 15px 30px rgba(17, 24, 39, 0.05);
+            border-color: #d4af37;
+        }
+
+        .resume-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+
+        .resume-item h4 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .resume-item .date {
+            font-size: 0.8rem;
+            color: #4b5563;
+            font-weight: 600;
+            background: #f3f4f6;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .resume-item .institution {
+            font-size: 0.95rem;
+            color: #b45309;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .resume-item p {
+            font-size: 0.95rem;
+            color: #4b5563;
+        }
+
+        /* Beceriler ve Diller Alanı */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-badge {
+            background: #ffffff;
+            color: #1f2937;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            border: 1px solid #e5e7eb;
+            cursor: default;
+        }
+
+        .skill-badge:hover {
+            background: #111827;
+            color: #ffffff;
+            border-color: #111827;
+            transform: translateY(-2px);
+        }
+
+        /* EN ALT BÖLÜM: İstediğin Yeni İletişim Kartı */
+        .contact-card {
+            background: #111827;
+            color: #ffffff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .contact-card p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+        }
+
+        .social-links a {
+            color: #9ca3af;
+            font-size: 2rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            color: #d4af37;
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+        }
+
+        /* PC ve Mobil Ekranlar İçin Tam Uumluluk (Responsive Grid) */
+        @media (max-width: 600px) {
+            body { padding: 30px 12px; }
+            .brand-header { padding: 40px 20px; }
+            .brand-header h1 { font-size: 2.2rem; letter-spacing: 1.5px; }
+            .main-card { padding: 30px 20px; }
+            .resume-item-header { flex-direction: column; gap: 6px; }
+            .social-links { gap: 25px; }
+            .social-links a { font-size: 1.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- ÜST ALAN: YENİ TIPOGRAFİK VE MODERN BAŞLIK ALANI -->
+        <header class="brand-header">
+            <h1>Cuma Aslan</h1>
+            <h2>Yönetim Bilişim Sistemleri Öğrencisi</h2>
+        </header>
+
+        <!-- ORTA ALAN: MAT BEYAZ ÖZGEÇMİŞ İÇERİĞİ -->
+        <main class="main-card">
+            
+            <!-- EĞİTİM BÖLÜMÜ -->
+            <section class="section">
+                <h3>Eğitim</h3>
+                
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h4>Lisans Eğitimi</h4>
+                        <span class="date">2023 - Devam Ediyor</span>
+                    </div>
+                    <div class="institution">İskenderun Teknik Üniversitesi</div>
+                    <p>Yönetim Bilişim Sistemleri (YBS) Bölümü, 3. Sınıf öğrencisiyim. İşletme yönetimi ile bilişim sistemlerinin entegrasyonu üzerine çalışıyorum.</p>
+                </div>
+
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h4>Lise Eğitimi</h4>
+                        <span class="date">Mezun</span>
+                    </div>
+                    <div class="institution">Necip Fazıl Kısakürek Anadolu Lisesi</div>
+                    <p>Temel analitik ve akademik altyapının kazanılması.</p>
+                </div>
+            </section>
+
+            <!-- PROJELER BÖLÜMÜ -->
+            <section class="section">
+                <h3>Projeler</h3>
+                
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h4>Menü AR / XR Projesi</h4>
+                        <span class="date">Mayıs 2026</span>
+                    </div>
+                    <div class="institution">Artırılmış Gerçeklik Tabanlı Menü Uygulaması</div>
+                    <p>MindAR ve Vuforia motorları kullanılarak geliştirilmiş, web tabanlı bir artırılmış gerçeklik restoran menü projesi. Kullanıcıların sipariş vermeden önce ürünleri 3D olarak görüntülemesini ve gerçek zamanlı sipariş takibi yapabilmesini sağlar.</p>
+                </div>
+            </section>
+
+            <!-- BECERİLER BÖLÜMÜ -->
+            <section class="section">
+                <h3>Beceriler</h3>
+                <div class="skills-container">
+                    <div class="skill-badge">C#</div>
+                    <div class="skill-badge">C++</div>
+                    <div class="skill-badge">Unity Engine</div>
+                    <div class="skill-badge">3D Modelleme & Blender</div>
+                </div>
+            </section>
+
+            <!-- DİLLER BÖLÜMÜ -->
+            <section class="section">
+                <h3>Diller</h3>
+                <div class="skills-container">
+                    <div class="skill-badge">Türkçe (Ana Dil)</div>
+                    <div class="skill-badge">İngilizce (Profesyonel)</div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- EN ALT ALAN: REPO / LİNK BÖLÜMÜ OLARAK KURGULANAN İLETİŞİM KARTI -->
+        <footer class="contact-card">
+            <h3>İletişime Geçin</h3>
+            <p>Projeler, iş birlikleri veya profesyonel ağ oluşturma için bağlantı kurabilirsiniz.</p>
+            
+            <div class="social-links">
+                <a href="https://github.com/aslan-droid" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/cumaaslan" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <!-- Gelişmiş Gmail Linki -->
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aslancuma45@gmail.com" target="_blank" title="Mesaj Gönderin"><i class="fas fa-envelope"></i></a>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
