@@ -1,299 +1,210 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuma Aslan | Portfolio</title>
-    <!-- Google Fontları ve İkonlar -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Cuma Aslan | Portfolyo</title>
+    
+    <!-- Tailwind CSS (Kurulumsuz CDN versiyonu) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fontları ve FontAwesome İkonları -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Spline 3D Kütüphanesi -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.94/build/spline-viewer.js"></script>
+
     <style>
-        /* Modern ve Sıfırlanmış Temel Ayarlar */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
         body {
-            background-color: #050505; /* Çok derin premium siyah */
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.05) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(30, 41, 59, 0.5) 0px, transparent 50%);
-            color: #e2e8f0;
             font-family: 'Outfit', sans-serif;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
         }
-
-        /* Bilgisayarda Geniş, Mobilde Esnek Konteyner */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 30px;
-            flex-grow: 1;
-        }
-
-        /* YENİ HERO (BAŞLIK) BÖLÜMÜ */
-        .hero {
-            text-align: center;
-            margin-bottom: 80px;
-            padding-top: 40px;
-        }
-
-        .hero h1 {
+        .title-font {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 4.5rem;
-            font-weight: 700;
-            letter-spacing: -2px;
-            color: #ffffff;
-            margin-bottom: 10px;
         }
-
-        .hero h2 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: #94a3b8;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        /* Özel Kaydırma Çubuğu */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        .hero h2 span {
-            background: linear-gradient(90deg, #d4af37 0%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 600;
+        ::-webkit-scrollbar-track {
+            background: #050505; 
         }
-
-        /* PROJELER IZGARASI (GRID) - PC'de Yan Yana, Mobilde Alt Alta */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 10px;
         }
-
-        /* PROJE KARTLARI */
-        .project-card {
-            background: rgba(15, 23, 42, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
         }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            background: rgba(15, 23, 42, 0.8);
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.05);
+        /* Spline Logo Gizleme */
+        spline-viewer::part(logo) {
+            display: none !important;
         }
-
-        .project-icon {
-            font-size: 2.5rem;
-            color: #d4af37;
-            margin-bottom: 25px;
-        }
-
-        .project-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-
-        .project-desc {
-            font-size: 1.05rem;
-            color: #cbd5e1;
-            margin-bottom: 30px;
-            flex-grow: 1;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 35px;
-        }
-
-        .tech-tag {
-            font-size: 0.8rem;
-            padding: 6px 14px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            color: #94a3b8;
-            letter-spacing: 1px;
-        }
-
-        /* BUTONLAR */
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px 24px;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .btn-primary {
-            background: #ffffff;
-            color: #050505;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background: #d4af37;
-            color: #050505;
-            transform: scale(1.02);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: #ffffff;
-        }
-
-        /* ALT BİLGİ VE SOSYAL LİNKLER */
-        footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px 0;
-            text-align: center;
-            margin-top: auto;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .social-links a {
-            color: #64748b;
-            font-size: 1.8rem;
-            text-decoration: none;
-        }
-
-        .social-links a:hover {
-            color: #ffffff;
-            transform: translateY(-5px);
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
-        }
-
-        /* Mobil Ekran Uyumluğu */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .project-card { padding: 30px; }
-            .action-buttons { flex-direction: column; }
-            .btn { width: 100%; }
+        /* Projeler için Cam Efekti Kartlar (Glassmorphism) */
+        .glass-card {
+            background: rgba(10, 10, 10, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
         }
     </style>
 </head>
-<body>
+<body class="selection:bg-yellow-600/30">
 
-    <div class="container">
+    <!-- ARKA PLAN: TAM EKRAN 3D MODEL -->
+    <div class="fixed inset-0 z-0 w-full h-full pointer-events-auto cursor-grab active:cursor-grabbing">
+        <!-- 3D Sahne -->
+        <spline-viewer 
+            url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" 
+            class="w-full h-full">
+        </spline-viewer>
         
-        <!-- ÜST ALAN: KİMLİK -->
-        <header class="hero">
-            <h1>Cuma Aslan</h1>
-            <h2>Yönetim Bilişim Sistemleri <span>&</span> Ürün Geliştirme</h2>
-        </header>
-
-        <!-- PROJELER ALANI -->
-        <main class="projects-grid">
-            
-            <!-- PROJE 1: İK MÜLAKAT BOTU -->
-            <article class="project-card">
-                <div>
-                    <div class="project-icon">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <h3 class="project-title">Yapay Zeka Destekli İK Mülakat Simülatörü</h3>
-                    <p class="project-desc">Adayların mülakat süreçlerine hazırlanmasını sağlayan, gerçek zamanlı yapay zeka entegrasyonuna sahip interaktif bir web uygulaması. Yetkinlik analizleri yaparak anında geri bildirim ve gelişim önerileri sunar.</p>
-                    
-                    <div class="tech-stack">
-                        <span class="tech-tag">Web Geliştirme</span>
-                        <span class="tech-tag">Yapay Zeka (AI)</span>
-                        <span class="tech-tag">Prompt Engineering</span>
-                    </div>
-                </div>
-                
-                <div class="action-buttons">
-                    <!-- Linki kendi projenin linkiyle değiştir -->
-                    <a href="https://aslan-droid.github.io/IK-Mulakat-Simulatoru/" target="_blank" class="btn btn-primary">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Simülatörü Aç
-                    </a>
-                </div>
-            </article>
-
-            <!-- PROJE 2: AR MENÜ UYGULAMASI -->
-            <article class="project-card">
-                <div>
-                    <div class="project-icon">
-                        <i class="fa-solid fa-vr-cardboard"></i>
-                    </div>
-                    <h3 class="project-title">Artırılmış Gerçeklik (AR) Restoran Menüsü</h3>
-                    <p class="project-desc">Kullanıcıların sipariş vermeden önce yiyecek ve içecekleri masalarında 3D olarak görüntülemesini sağlayan yenilikçi bir web-AR projesi. Uygulamanın çalışması için aşağıdaki izleyici (tracker) menü kağıdını okutmanız gerekmektedir.</p>
-                    
-                    <div class="tech-stack">
-                        <span class="tech-tag">Vuforia / MindAR</span>
-                        <span class="tech-tag">3D Modelleme</span>
-                        <span class="tech-tag">WebXR</span>
-                    </div>
-                </div>
-                
-                <div class="action-buttons">
-                    <!-- Uygulama Linki -->
-                    <a href="https://aslan-droid.github.io/ar-menu/" target="_blank" class="btn btn-primary">
-                        <i class="fa-solid fa-camera"></i> AR Kamerayı Aç
-                    </a>
-                    <!-- İndirme Linki: "href" kısmına github'a yüklediğin menü kağıdı dosyasının adını yaz -->
-                    <a href="menu-kagidi.jpeg" download class="btn btn-outline">
-                        <i class="fa-solid fa-download"></i> Menü Kağıdını İndir
-                    </a>
-                </div>
-            </article>
-
-        </main>
+        <!-- Sadece sol tarafı koyulaştıran, sağ tarafta 3D modeli net bırakan degrade geçiş -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent pointer-events-none"></div>
     </div>
 
-    <!-- ALT BİLGİ: İLETİŞİM -->
-    <footer>
-        <div class="social-links">
-            <a href="https://github.com/aslan-droid" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/cumaaslan" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aslancuma45@gmail.com" target="_blank" title="E-posta Gönder"><i class="fas fa-envelope"></i></a>
+    <!-- ÜST MENÜ (NAVBAR) -->
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-5 bg-black/10 backdrop-blur-sm border-b border-white/5 pointer-events-auto">
+        <!-- Sol Logo/İsim -->
+        <a href="#home" class="title-font text-2xl font-bold tracking-widest text-white hover:text-gray-300 transition-colors">
+            CA.
+        </a>
+        <!-- Sağ Sekmeler -->
+        <div class="flex gap-6 md:gap-10 font-medium text-sm md:text-base tracking-wide">
+            <a href="#projects" class="text-gray-300 hover:text-white hover:underline underline-offset-8 decoration-yellow-600 transition-all">Projeler</a>
+            <a href="#contact" class="text-gray-300 hover:text-white hover:underline underline-offset-8 decoration-yellow-600 transition-all">İletişim</a>
         </div>
-    </footer>
+    </nav>
+
+    <!-- SAYFA İÇERİKLERİ (ÖN KATMAN) -->
+    <div class="relative z-10 w-full pointer-events-none">
+
+        <!-- ANA SAYFA KISMI (HERO) - Çerçevesiz ve Sola Yaslı -->
+        <section id="home" class="min-h-screen flex flex-col justify-center items-start text-left px-8 md:px-20 pt-20">
+            
+            <!-- Yazıların tıklanabilir olması için pointer-events-auto -->
+            <div class="pointer-events-auto max-w-2xl transform transition-all">
+                <h1 class="title-font text-6xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400 mb-4 tracking-tight">
+                    Cuma Aslan
+                </h1>
+                <h2 class="text-xl md:text-2xl font-medium text-yellow-500 mb-6 tracking-wide">
+                    Yönetim Bilişim Sistemleri
+                </h2>
+                <p class="text-gray-400 text-lg md:text-xl leading-relaxed mb-10 pr-4 md:pr-0">
+                    Modern teknolojileri kullanarak iş süreçlerini dijitalleştiren yenilikçi çözümler üretiyorum. 
+                    Artırılmış gerçeklik (AR) ve yapay zeka (AI) destekli uygulamalar ile sıradan arayüzleri, canlı deneyimlere dönüştürüyorum.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#projects" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-gray-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                        Projelerimi İncele <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- PROJELER KISMI -->
+        <section id="projects" class="min-h-screen py-24 px-4 flex flex-col items-center pointer-events-auto bg-black/80 backdrop-blur-md">
+            <h2 class="title-font text-4xl md:text-5xl font-bold text-center mb-16 uppercase tracking-widest text-white">
+                Öne Çıkan <span class="text-yellow-600">Projeler</span>
+            </h2>
+
+            <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- 1. PROJE: İK MÜLAKAT BOTU -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col hover:border-yellow-600/50 transition-all duration-300 group">
+                    <div class="text-4xl text-yellow-600 mb-6 group-hover:scale-110 transition-transform origin-left">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3 class="title-font text-2xl font-bold text-white mb-3">Yapay Zeka İK Mülakat Simülatörü</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Adayların mülakat süreçlerine hazırlanmasını sağlayan, LLM destekli akıllı web uygulaması.</p>
+                    
+                    <ul class="text-gray-300 text-sm mb-8 space-y-3 flex-1">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-yellow-600 mt-1"></i>
+                            <span><b>Gerçek Zamanlı AI Yanıtları:</b> Adayın verdiği cevaplara göre dinamik sorular üreterek İK uzmanını simüle eder.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-yellow-600 mt-1"></i>
+                            <span><b>Yetkinlik Analizi:</b> Mülakat sonunda detaylı gelişim raporu ve geri bildirim sunar.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-yellow-600 mt-1"></i>
+                            <span><b>Prompt Engineering:</b> Gelişmiş istem mühendisliği ile tam kurumsal bir üslup sağlanmıştır.</span>
+                        </li>
+                    </ul>
+
+                    <a href="https://aslan-droid.github.io/mulakat-botu/" target="_blank" class="w-full text-center py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors">
+                        Simülatörü Aç <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- 2. PROJE: AR MENÜ -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col hover:border-yellow-600/50 transition-all duration-300 group">
+                    <div class="text-4xl text-yellow-600 mb-6 group-hover:scale-110 transition-transform origin-left">
+                        <i class="fa-solid fa-vr-cardboard"></i>
+                    </div>
+                    <h3 class="title-font text-2xl font-bold text-white mb-3">Artırılmış Gerçeklik (AR) Menüsü</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Kullanıcıların ürünleri masalarında 3 boyutlu olarak görüntülemesini sağlayan yenilikçi Web-XR projesi.</p>
+                    
+                    <ul class="text-gray-300 text-sm mb-8 space-y-3 flex-1">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-yellow-600 mt-1"></i>
+                            <span><b>Web Tabanlı Çalışma:</b> Uygulama indirmeye gerek kalmadan tarayıcı üzerinden çalışır.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-yellow-600 mt-1"></i>
+                            <span><b>Vuforia & MindAR:</b> Hedef menü kağıdını kamera ile anında algılayarak modelleri yansıtır.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-yellow-600 mt-1"></i>
+                            <span><b>İnteraktif 3D Modeller:</b> Restoran ürünleri masanın üzerinde gerçekçi şekilde konumlandırılır.</span>
+                        </li>
+                    </ul>
+
+                    <div class="flex flex-col xl:flex-row gap-3">
+                        <a href="https://aslan-droid.github.io/ar-menu/" target="_blank" class="flex-1 text-center py-3 border border-white/20 bg-white/5 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors">
+                            Kamerayı Aç <i class="fa-solid fa-camera ml-1"></i>
+                        </a>
+                        <!-- menü kağıdı adı -->
+                        <a href="menu-kagidi.jpeg" download class="flex-1 text-center py-3 bg-yellow-600 text-black font-semibold rounded-lg hover:bg-yellow-500 transition-colors">
+                            Menüyü İndir <i class="fa-solid fa-download ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- İLETİŞİM KISMI -->
+        <footer id="contact" class="border-t border-white/10 bg-black pointer-events-auto pt-20 pb-10">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <h2 class="title-font text-3xl font-bold text-white mb-4">İletişime Geçin</h2>
+                <p class="text-gray-400 mb-10 max-w-xl mx-auto">Projeleriniz, iş birlikleri veya fikir alışverişi için bana aşağıdaki platformlardan veya doğrudan e-posta yoluyla ulaşabilirsiniz.</p>
+                
+                <div class="flex justify-center gap-8 mb-16">
+                    <a href="https://github.com/aslan-droid" target="_blank" class="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/20 hover:scale-110 transition-all text-2xl">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/cumaaslan" target="_blank" class="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-[#0a66c2] hover:bg-white/20 hover:scale-110 transition-all text-2xl">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aslancuma45@gmail.com" target="_blank" class="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-red-500 hover:bg-white/20 hover:scale-110 transition-all text-2xl">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+                
+                <p class="text-gray-600 text-sm">
+                    © 2026 Cuma Aslan. Tüm hakları saklıdır.
+                </p>
+            </div>
+        </footer>
+
+    </div>
 
 </body>
 </html>
