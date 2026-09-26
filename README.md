@@ -2,6 +2,7 @@
 
 Kullanıcı deneyimini merkeze alan interaktif web projeleri (Frontend & WebAR) ve veri analitiği çözümleri geliştiren bir Yönetim Bilişim Sistemleri (YBS) öğrencisinin dijital çalışma alanı.
 
+🌐 **Canlı Web Sitem:** [cumaaslan.com.tr](https://cumaaslan.com.tr)
 
 ## 🚀 Hakkımda
 İşletme süreçlerini optimize eden analitik çözümler üretmeye ve modern web teknolojilerini kullanarak yenilikçi arayüzler tasarlamaya odaklanıyorum. Teknolojinin sadece kod yazmaktan ibaret olmadığına; doğru analiz, erişilebilirlik ve estetikle insana dokunması gerektiğine inanıyorum.
